@@ -1,4 +1,4 @@
-## <ins>Vorto_ai: DevOps Engineering Challenge  </ins><br/> ##
+<b><ins>Vorto_ai: DevOps Engineering Challenge  </ins><br/> <b>
 <br/>
 - download the go_project.zip and follow the readme.txt file in the unzipped folder <br/>
  - I have attempted the : <br/>
