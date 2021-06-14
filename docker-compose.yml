@@ -1,0 +1,50 @@
+# @format
+
+# # @format
+
+# version: "3.8"
+# services:
+#   db:
+#     image: postgres:13-alpine
+#     restart: always
+#     ports:
+#       - "5432:5432"
+#     environment:
+#       - POSTGRES_PASSWORD=Newuser123
+#       - POSTGRES_USER=postgres
+#       - POSTGRES_DB=vorto_ai
+
+#   backend:
+#     build:
+#       context: .
+#       dockerfile: Dockerfile
+#     ports:
+#       - "8080:8080"
+#     environment:
+#       - DB_SOURCE=postgresql://postgres:Newuser123@db:5432/vorto_ai?sslmode=disbable
+# @format
+
+version: "3.8"
+services:
+  db:
+    build:
+      context: .
+      dockerfile: Dockerfile-db
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=Newuser123
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=vorto_ai
+
+  backend:
+    depends_on:
+      - db
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - DB_SOURCE=postgresql://postgres:Newuser123@db:5432/vorto_ai?sslmode=disbable
